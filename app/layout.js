@@ -7,6 +7,7 @@ import "swiper/css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
+import ToastComp from "@/components/ToastComp";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <ToastComp />
         <Header />
         <Navbar />
         {children}
