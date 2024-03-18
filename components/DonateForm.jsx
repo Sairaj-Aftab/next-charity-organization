@@ -8,13 +8,12 @@ import {
 import toast from "react-hot-toast";
 
 function DonateForm() {
-  const [goingPay, setGoingPay] = useState(false);
-
   // Stripe Setup
   const stripe = useStripe();
   const elements = useElements();
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  console.log(stripe);
   useEffect(() => {
     if (!stripe) {
       return;
@@ -32,19 +31,19 @@ function DonateForm() {
       switch (paymentIntent.status) {
         case "succeeded":
           toast.success("Payment succeeded!");
-          // setMessage("");
+          setMessage("Payment succeeded!");
           break;
         case "processing":
           toast.success("Your payment is processing.");
-          // setMessage("");
+          setMessage("Your payment is processing.");
           break;
         case "requires_payment_method":
           toast.error("Your payment was not successful, please try again.");
-          // setMessage("");
+          setMessage("Your payment was not successful, please try again.");
           break;
         default:
           toast.error("Something went wrong.");
-          // setMessage("");
+          setMessage("Something went wrong.");
           break;
       }
     });
@@ -76,7 +75,7 @@ function DonateForm() {
     // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       toast.error(error.message);
-      // setMessage(error.message);
+      setMessage(error.message);
     } else {
       setMessage("An unexpected error occurred.");
     }
@@ -94,7 +93,9 @@ function DonateForm() {
         <button disabled={isLoading || !stripe || !elements} id="submit">
           <span id="button-text">
             {isLoading ? (
-              <div className="spinner" id="spinner"></div>
+              <div className="spinner" id="spinner">
+                Paying...
+              </div>
             ) : (
               "Pay now"
             )}

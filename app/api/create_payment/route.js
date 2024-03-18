@@ -20,8 +20,8 @@ export async function POST(req) {
   const body = await req.json();
   const { id, amount } = body.data;
   // console.log(body);
-  console.log(id);
-  console.log(amount);
+  // console.log(id);
+  // console.log(amount);
 
   //   Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({

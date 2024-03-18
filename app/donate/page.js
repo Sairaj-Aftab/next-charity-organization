@@ -30,18 +30,10 @@ function Donate() {
           data: { id: "xl-tshirt", amount: input.amount },
         })
         .then((res) => setClientSecret(res?.data?.clientSecret))
+        .then((data) => console.log(data))
         .catch((err) => console.log(err));
     }
   };
-  useEffect(() => {
-    // fetch("/api/create_payment", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-    // })
-    //   .then((res) => console.log(res))
-    //   .then((data) => setClientSecret(data?.clientSecret));
-  }, []);
 
   const appearance = {
     theme: "stripe",
